@@ -1,0 +1,43 @@
+import java.util.Scanner;
+
+public class KhachHangVietNam extends KhachHang {
+	public String doiTuong;
+    public double dinhMuc;
+
+    public KhachHangVietNam() {
+    }
+
+    public KhachHangVietNam(String maKhachHang, String hoTen, String ngayRaHoaDon, double soLuong, double donGia,
+            String doiTuong, double dinhMuc) {
+        super(maKhachHang, hoTen, ngayRaHoaDon, soLuong, donGia);
+        this.doiTuong = doiTuong;
+        this.dinhMuc = dinhMuc;
+    }
+
+    @Override
+    public void nhapThongTin() {
+        super.nhapThongTin();
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Nhap doi tuong khach hang: ");
+        doiTuong = scanner.nextLine();
+        System.out.print("Nhap dinh muc: ");
+        dinhMuc = scanner.nextDouble();
+    }
+
+    @Override
+    public void xuatThongTin() {
+        super.xuatThongTin();
+        System.out.println("Doi tuong khach hang: " + doiTuong);
+        System.out.println("Dinh Muc: " + dinhMuc);
+    }
+
+    @Override
+    public double tinhThanhTien() {
+        if (soLuong <= dinhMuc) {
+            return soLuong * donGia;
+        } else {
+            return soLuong * donGia * dinhMuc + (soLuong - dinhMuc) * donGia * 2.5;
+        }
+    }
+
+}
