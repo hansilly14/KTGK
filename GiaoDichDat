@@ -1,0 +1,21 @@
+import java.util.Date;
+
+public class GiaoDichDat extends GiaoDich {
+	public char LoaiDat;
+	
+	public GiaoDichDat( String Magiaodich, Date Ngaygiaodich, double Dongia, double Dientich,String Hotenchu ,char LoaiDat) {
+		super(Magiaodich, Ngaygiaodich, Dongia, Dientich, Hotenchu);
+		this.LoaiDat= LoaiDat;		
+	}
+	
+	@Override
+	public  double tinhthanhtien() {
+		if(LoaiDat=='A') {
+			return Dientich * Dongia * 1.5;
+			
+		}else {
+			return Dientich * Dongia;
+		}
+	}
+	
+}
