@@ -1,0 +1,47 @@
+import java.util.Scanner;
+
+public class KhachHang {
+	  public String maKhachHang;
+	  public String hoTen;
+	  public String ngayRaHoaDon;
+	  public double soLuong;
+	  public double donGia;
+
+	    public KhachHang() {
+	    }
+
+	    public KhachHang(String maKhachHang, String hoTen, String ngayRaHoaDon, double soLuong, double donGia) {
+	        this.maKhachHang = maKhachHang;
+	        this.hoTen = hoTen;
+	        this.ngayRaHoaDon = ngayRaHoaDon;
+	        this.soLuong = soLuong;
+	        this.donGia = donGia;
+	    }
+
+	    public void nhapThongTin() {
+	        Scanner scanner = new Scanner(System.in);
+	        System.out.print("Nhap ma khcah hang: ");
+	        maKhachHang = scanner.nextLine();
+	        System.out.print("Nhap ho ten khach hang : ");
+	        hoTen = scanner.nextLine();
+	        System.out.print("Ngay ra hoa don (ngay/thang/nam): ");
+	        ngayRaHoaDon = scanner.nextLine();
+	        System.out.print("Nhap so luong: ");
+	        soLuong = scanner.nextDouble();
+	        System.out.print("Nhap don gia: ");
+	        donGia = scanner.nextDouble();
+	    }
+
+
+	    public void xuatThongTin() {
+	        System.out.println("Ma khcah hang: " + maKhachHang);
+	        System.out.println("Ho ten khcah hang: " + hoTen);
+	        System.out.println("Ngay ra hoa don: " + ngayRaHoaDon);
+	        System.out.println("So luong: " + soLuong);
+	        System.out.println("Don gia: " + donGia);
+	    }
+
+	    public double tinhThanhTien() {
+	        return soLuong * donGia;
+	    }
+}
