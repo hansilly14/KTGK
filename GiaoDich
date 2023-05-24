@@ -1,0 +1,26 @@
+import java.util.Date;
+public class GiaoDich {
+      public String Magiaodich;
+      public Date Ngaygiaodich;
+      public double Dongia;
+      public double Dientich;
+      public String Hotenchu;
+     
+      public GiaoDich (String Magiaodich, Date Ngaygiaodich, double Dongia, double Dientich, String Hotenchu) {
+    	  this.Magiaodich= Magiaodich;
+    	  this.Ngaygiaodich= Ngaygiaodich;
+    	  this.Dongia= Dongia;
+    	  this.Dientich=Dientich;
+    	  this.Hotenchu= Hotenchu;
+      }
+      
+      public double tinhthanhtien() {
+    	  return Dientich * Dongia;
+      }
+	@Override
+	public String toString() {
+		return "GiaoDich [Magiaodich=" + Magiaodich + ", Ngaygiaodich=" + Ngaygiaodich + ", Dongia=" + Dongia
+				+ ", Dientich=" + Dientich + ", Hotenchu=" + Hotenchu + "]";
+	}
+      
+}
