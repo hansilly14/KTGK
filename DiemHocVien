@@ -1,0 +1,56 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class DiemHocVien {
+    public String hoTen;
+    public int namSinh;
+    public List<Double> diemMonHoc;
+
+    public DiemHocVien(String hoTen, int namSinh, List<Double> diemMonHoc) {
+        this.hoTen = hoTen;
+        this.namSinh = namSinh;
+        this.diemMonHoc = diemMonHoc;
+    }
+
+    public String getHoTen() {
+        return hoTen;
+    }
+
+    public int getNamSinh() {
+        return namSinh;
+    }
+
+    public List<Double> getDiemMonHoc() {
+        return diemMonHoc;
+    }
+
+    public double tinhDiemTrungBinh() {
+        double sum = 0;
+        for (double diem : diemMonHoc) {
+            sum += diem;
+        }
+        return sum / diemMonHoc.size();
+    }
+
+    public boolean coMonDuoi5Diem() {
+        for (double diem : diemMonHoc) {
+            if (diem < 5) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public List<String> danhSachMonThiLai() {
+        List<String> monThiLaiList = new ArrayList<>();
+        String[] tenMonHoc = {"Toan", "Ly", "Hoa", "TA", "Sinh"};
+
+        for (int i = 0; i < diemMonHoc.size(); i++) {
+            if (diemMonHoc.get(i) < 5) {
+                monThiLaiList.add(tenMonHoc[i]);
+            }
+        }
+
+        return monThiLaiList;
+    }
+}
