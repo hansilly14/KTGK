@@ -1,0 +1,121 @@
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Scanner;
+
+public class QuanLyGiaoDich {
+    private List<GiaoDich> danhSachGiaoDich;
+
+    public QuanLyGiaoDich() {
+        danhSachGiaoDich = new ArrayList<>();
+    }
+
+    public void nhapDanhSachGiaoDich() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Nhap so luong giao dich: ");
+        int soLuong = scanner.nextInt();
+        scanner.nextLine(); 
+
+        for (int i = 0; i < soLuong; i++) {
+            System.out.println("Nhap thong tin giao dich thu " + (i + 1));
+
+            System.out.print("Loai giao dich (dat/nha): ");
+            String loaiGiaoDich = scanner.nextLine();
+
+            System.out.print("Ma giao dich: ");
+            String maGiaoDich = scanner.nextLine();
+                       
+            System.out.print("Ngay giao dich (dd/MM/yyyy): ");
+            String ngayGiaoDichStr = scanner.nextLine();
+            Date ngayGiaoDich = parseDate(ngayGiaoDichStr);
+                   
+            System.out.print("Nhap Hotencchu: ");
+            String Hotenchu = scanner.nextLine();
+            
+            System.out.print("Don gia: ");
+            double donGia = scanner.nextDouble();
+
+            System.out.print("Dien tich: ");
+            double dienTich = scanner.nextDouble();
+            scanner.nextLine(); 
+
+            if (loaiGiaoDich.equalsIgnoreCase("Dat")) {
+                System.out.print("Loai Dat (A/B/C): ");
+                char loaiDat = scanner.next().charAt(0);
+                scanner.nextLine();
+
+                GiaoDichDat giaoDichDat = new GiaoDichDat(maGiaoDich, ngayGiaoDich, donGia,dienTich ,Hotenchu, loaiDat);
+                danhSachGiaoDich.add(giaoDichDat);
+            } else if (loaiGiaoDich.equalsIgnoreCase("Nha")) {
+                System.out.print("Loai nha (caocap/thuong): ");
+                String loaiNha = scanner.nextLine();
+
+                System.out.print("Dia chi: ");
+                String diaChi = scanner.nextLine();
+
+                GiaoDichNha giaoDichNha = new GiaoDichNha(maGiaoDich, ngayGiaoDich, donGia, dienTich,Hotenchu ,loaiNha, diaChi);
+                danhSachGiaoDich.add(giaoDichNha);
+            }
+        }
+    }
+
+    public void xuatDanhSachGiaoDich() {
+        for (GiaoDich giaoDich : danhSachGiaoDich) {
+            System.out.println(giaoDich.toString());
+        }
+    }
+
+    public int demSoLuongTheoLoai(String loaiGiaoDich) {
+        int count = 0;
+        for (GiaoDich giaoDich : danhSachGiaoDich) {
+            if (giaoDich instanceof GiaoDichDat && loaiGiaoDich.equalsIgnoreCase("dat")) {
+                count++;
+            } else if (giaoDich instanceof GiaoDichNha && loaiGiaoDich.equalsIgnoreCase("nha")) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public double tinhTrungBinhThanhTienDat() {
+        double tongThanhTien = 0;
+        int count = 0;
+
+        for (GiaoDich giaoDich : danhSachGiaoDich) {
+            if (giaoDich instanceof GiaoDichDat) {
+                tongThanhTien += giaoDich.tinhthanhtien();
+                count++;
+            }
+        }
+
+        if (count > 0) {
+            return tongThanhTien / count;
+        }
+        return 0;
+    }
+
+    public void xuatGiaoDich24thang5nam2023() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String thangNam = "24/05/2023";
+
+        for (GiaoDich giaoDich : danhSachGiaoDich) {
+            String ngayGiaoDichStr = dateFormat.format(giaoDich.Ngaygiaodich);
+            if (ngayGiaoDichStr.equals(thangNam)) {
+                System.out.println(giaoDich.toString());
+            }
+        }
+    }
+
+    private Date parseDate(String dateString) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            return dateFormat.parse(dateString);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+}
+
