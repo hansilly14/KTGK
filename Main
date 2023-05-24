@@ -1,0 +1,61 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        QuanLyGiaoDich quanLyGiaoDich = new QuanLyGiaoDich();
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("===== Quan ly danh sach giao dich =====");
+
+        System.out.println("1. Nhap danh sach giao dich");
+        System.out.println("2. Xuat danh sach giao dich");
+        System.out.println("3. Dem so luong giao dich theo loai");
+        System.out.println("4. Tinh trung binh thanh tien cua giao dich dat");
+        System.out.println("5. Xuat giao dich cua ngay 24/05/2013");
+        System.out.println("0. Out ");
+
+        int choice;
+        do {
+            System.out.print("Nhap lua chon cua ban: ");
+            choice = scanner.nextInt();
+            scanner.nextLine(); 
+
+            switch (choice) {
+                case 1:
+                    System.out.println("Nhap danh sach giao dich");
+                    quanLyGiaoDich.nhapDanhSachGiaoDich();
+                    break;
+                case 2:
+                    System.out.println("Xuat danh sach giao dich");
+                    quanLyGiaoDich.xuatDanhSachGiaoDich();
+                    break;
+                case 3:
+                    System.out.println("Dem so luong giao dich theo loai");
+                    System.out.print("Nhap loai giao dich(dat/nha): ");
+                    String loaiGiaoDich = scanner.nextLine();
+                    int soLuong = quanLyGiaoDich.demSoLuongTheoLoai(loaiGiaoDich);
+                    System.out.println("So luong giao dich " + loaiGiaoDich + ": " + soLuong);
+                    break;
+                case 4:
+                    System.out.println("Tinh trung binh thanh tien cua giao dich dat");
+                    double trungBinhThanhTien = quanLyGiaoDich.tinhTrungBinhThanhTienDat();
+                    System.out.println("Trung binh thanh tien cua giao dich dat: " + trungBinhThanhTien);
+                    break;
+                case 5:
+                    System.out.println("Xuat giao dich 24/05/2023");
+                    quanLyGiaoDich.xuatGiaoDich24thang5nam2023();
+                    break;
+                case 0:
+                    System.out.println("Game over");
+                    break;
+                default:
+                    System.out.println("Lua chon khong hop le");
+                    break;
+            }
+
+        } while (choice != 0);
+
+        scanner.close();
+    }
+}
