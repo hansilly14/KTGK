@@ -1,0 +1,60 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class QuanLyHoaDonTienDien {
+    private ArrayList<KhachHang> danhSachHoaDon;
+    private int soLuongKhachHangVN;
+    private double tongThanhTienNN;
+    private int soLuongKhachHangNN;
+
+    public QuanLyHoaDonTienDien() {
+        danhSachHoaDon = new ArrayList<>();
+        soLuongKhachHangVN = 0;
+        tongThanhTienNN = 0;
+        soLuongKhachHangNN = 0;
+    }
+
+    public void themHoaDonKhachHangVN() {
+        KhachHangVietNam khachHangVN = new KhachHangVietNam();
+        khachHangVN.nhapThongTin();
+        danhSachHoaDon.add(khachHangVN);
+        soLuongKhachHangVN++;
+    }
+
+    public void themHoaDonKhachHangNN() {
+        KhachHangNuocNgoai khachHangNN = new KhachHangNuocNgoai();
+        khachHangNN.nhapThongTin();
+        danhSachHoaDon.add(khachHangNN);
+        soLuongKhachHangNN++;
+        tongThanhTienNN += khachHangNN.tinhThanhTien();
+    }
+
+    public void xuatDanhSachHoaDon() {
+        System.out.println("----- DANH SACH HOA DON -----");
+        for (KhachHang khachHang : danhSachHoaDon) {
+            khachHang.xuatThongTin();
+        }
+        System.out.println();
+    }
+
+    public void tinhTongSoLuongKhachHangVN() {
+        System.out.println("Tong so luong khach hang Viet Nam: " + soLuongKhachHangVN);
+        System.out.println();
+    }
+
+    public void tinhTrungBinhThanhTienNN() {
+        double trungBinhThanhTienNN = tongThanhTienNN / soLuongKhachHangNN;
+        System.out.println("Trung binh thanh tien cua khach nuoc ngoai: " + trungBinhThanhTienNN);
+        System.out.println();
+    }
+
+    public void xuatHoaDonNgay() {
+        System.out.println("----- HOA DON TRONG NGAY 24/05/2023 -----");
+        for (KhachHang khachHang : danhSachHoaDon) {
+            if (khachHang.ngayRaHoaDon.equals("24/05/2023")) {
+                khachHang.xuatThongTin();
+                System.out.println();
+            }
+        }
+    }
+}
