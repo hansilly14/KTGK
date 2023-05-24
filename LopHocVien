@@ -1,0 +1,44 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class LopHocVien {
+    private List<DiemHocVien> hocVienList;
+
+    public LopHocVien() {
+        hocVienList = new ArrayList<>();
+    }
+
+    public void themHocVien(DiemHocVien hocVien) {
+        hocVienList.add(hocVien);
+    }
+
+    public  int demSoHocVienLuanVanTotNghiep() {
+        int count = 0;
+        for (DiemHocVien hocVien : hocVienList) {
+            if (hocVien.tinhDiemTrungBinh() >= 7 && !hocVien.coMonDuoi5Diem()) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public int demSoHocVienThiTotNghiep() {
+        int count = 0;
+        for (DiemHocVien hocVien : hocVienList) {
+            if (hocVien.tinhDiemTrungBinh() < 7 || hocVien.coMonDuoi5Diem()) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public List<DiemHocVien> layDanhSachHocVienThiLai() {
+        List<DiemHocVien> hocVienThiLaiList = new ArrayList<>();
+        for (DiemHocVien hocVien : hocVienList) {
+            if (hocVien.coMonDuoi5Diem()) {
+                hocVienThiLaiList.add(hocVien);
+            }
+        }
+        return hocVienThiLaiList;
+    }
+}
