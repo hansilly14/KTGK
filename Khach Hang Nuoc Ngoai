@@ -1,0 +1,34 @@
+import java.util.Scanner;
+
+public class KhachHangNuocNgoai extends KhachHang{
+	 public String quocTich;
+
+	    public KhachHangNuocNgoai() {
+	    }
+
+	    public KhachHangNuocNgoai(String maKhachHang, String hoTen, String ngayRaHoaDon, double soLuong, double donGia,
+	            String quocTich) {
+	        super(maKhachHang, hoTen, ngayRaHoaDon, soLuong, donGia);
+	        this.quocTich = quocTich;
+	    }
+
+	    @Override
+	    public void nhapThongTin() {
+	        super.nhapThongTin();
+	        Scanner scanner = new Scanner(System.in);
+	        System.out.print("Nhap quoc tich: ");
+	        quocTich = scanner.nextLine();
+	    }
+
+	    @Override
+	    public void xuatThongTin() {
+	        super.xuatThongTin();
+	        System.out.println("Quoc tich: " + quocTich);
+	    }
+
+	    @Override
+	    public double tinhThanhTien() {
+	        return soLuong * donGia;
+	    }
+
+}
