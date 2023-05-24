@@ -1,0 +1,19 @@
+import java.util.Date;
+public class GiaoDichNha extends GiaoDich{
+	public String Loainha;
+	public String Diachi;
+	
+	public GiaoDichNha( String Magiaodich, Date Ngaygiaodich, double donGia, double dienTich,String Hotenchu ,String Loainha, String Diachi) {
+		super(Magiaodich, Ngaygiaodich, donGia, dienTich,Hotenchu);
+		this.Loainha= Loainha;
+		this.Diachi=Diachi;
+	}
+	@Override
+	public double tinhthanhtien() {
+		if(Loainha.equals("caocap")) {
+			return Dientich * Dongia;
+		}else {
+			return Dientich * Dongia *0.9;
+		}
+	}	
+}
