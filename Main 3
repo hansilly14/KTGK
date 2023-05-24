@@ -1,0 +1,82 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+public class Main {
+	 public static List<DiemHocVien> hocVienList = new ArrayList<>();
+
+	    public static void main(String[] args) {
+	        Scanner scanner = new Scanner(System.in);
+	        LopHocVien lopHocVien = new LopHocVien();
+	        int choice = 0;
+
+	        while (choice != 5) {
+	            System.out.println("----- MENU -----");
+	            System.out.println("1. Them hoc vien");
+	            System.out.println("2. Kiem tra so luong hoc vien lam luan van tot nghiep");
+	            System.out.println("3. Kiem tra so luong hoc vien thi tot nghiep");
+	            System.out.println("4. Kiem tra so luong hoc vien thi lai va danh sach mon thi lai");
+	            System.out.println("5. OUT");
+	            System.out.print("Nhap lua chon cua ban: ");
+	            choice = scanner.nextInt();
+	            scanner.nextLine(); 
+
+	            switch (choice) {
+	                case 1:
+	                    themHocVien(lopHocVien, scanner);
+	                    break;
+	                case 2:
+	                    int soHocVienLuanVanTotNghiep = lopHocVien.demSoHocVienLuanVanTotNghiep();
+	                    System.out.println("So luong hoc vien lam luan van tot nghiep: " + soHocVienLuanVanTotNghiep);
+	                    System.out.println();
+	                    break;
+	                case 3:
+	                    int soHocVienThiTotNghiep = lopHocVien.demSoHocVienThiTotNghiep();
+	                    System.out.println("So luong hoc vien thi tot nghiep: " + soHocVienThiTotNghiep);
+	                    System.out.println();
+	                    break;
+	                case 4:
+	                    List<DiemHocVien> hocVienThiLaiList = lopHocVien.layDanhSachHocVienThiLai();
+	                    System.out.println("So luong hoc vien thi lai: " + hocVienThiLaiList.size());
+	                    System.out.println("Danh sach mon thi lai:");
+	                    for (DiemHocVien hocVien : hocVienThiLaiList) {
+	                        List<String> monThiLai = hocVien.danhSachMonThiLai();
+	                        System.out.println(hocVien.getHoTen() + ": " + monThiLai);
+	                    }
+	                    System.out.println();
+	                    break;
+	                case 5:
+	                    System.out.println("Ket thuc chuong trinh.");
+	                    break;
+	                default:
+	                    System.out.println(" Vui lng thu lai");
+	                    break;
+	            }
+	        }
+	    }
+
+	    public static void themHocVien(LopHocVien lopHocVien, Scanner scanner) {
+	        System.out.print("Nhap ho ten hoc vien: ");
+	        String hoTen = scanner.nextLine();
+
+	        System.out.print("Nhap nam sinh hoc vien: ");
+	        int namSinh = scanner.nextInt();
+	        scanner.nextLine();
+
+	        System.out.println("Nhap diem 5 mon hoc vien:");
+	        List<Double> diemMonHoc = new ArrayList<>();
+	        String[] tenMonHoc = {"Toan", "Ly", "Hoa", "TA", "Sinh"};
+
+	        for (int i = 0; i < 5; i++) {
+	            System.out.print("Nhap diem mon" + tenMonHoc[i] + ": ");
+	            double diem = scanner.nextDouble();
+	            diemMonHoc.add(diem);
+	        }
+
+	        DiemHocVien hocVien = new DiemHocVien(hoTen, namSinh, diemMonHoc);
+	        lopHocVien.themHocVien(hocVien);
+
+	        System.out.println("Them thanh cong.");
+	        System.out.println();
+	    }
+	   
+}
